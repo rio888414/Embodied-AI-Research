@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智元 Genie 科研合作</title>
+<meta name="description" content="智元 Genie 科研合作：展示智元 Genie 开源产品（AGIBOT WORLD / Genie Sim / G 系列本体）在全球学术界被使用与引用的影响力雷达。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="assets/logo.jpg">
+</head>
+<body>
+
+<!-- 顶层导航 -->
+<header class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <div class="brand-logo" aria-label="智元精灵">
+        <img src="assets/logo.jpg" alt="智元" class="brand-logo-img">
+      </div>
+      <span class="brand-name">智元 Genie 科研合作</span>
+      <span class="brand-tag">RESEARCH</span>
+    </div>
+
+    <nav class="tabs" id="tabs">
+      <button class="tab is-active" data-view="overview">科研引用概览</button>
+      <button class="tab" data-view="detail">高质量引用明细</button>
+    </nav>
+
+    <div class="status" id="status">
+      <span class="dot" id="statusDot"></span>
+      <span id="statusText">正在连接…</span>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+
+  <!-- 视图一：科研引用概览 -->
+  <section class="view is-active" id="view-overview">
+    <div class="hero">
+      <div class="hero-label">AGIBOT GENIE · RESEARCH COLLABORATION</div>
+      <h1 class="hero-title">智元 Genie <em>科研合作</em></h1>
+      <div class="hero-row">
+        <div class="stats" id="stats"></div>
+      </div>
+    </div>
+
+    <div class="ov-grid">
+      <!-- 左：环形图 -->
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">高质量论文引用分布</div>
+            <div class="panel-sub">按智元产品关联方式归类 · 占比基于已归类论文</div>
+          </div>
+        </div>
+        <div class="donut-body">
+          <div class="donut-wrap" id="donutWrap"></div>
+          <div class="donut-legend" id="donutLegend"></div>
+          <div class="donut-note" id="donutNote" style="display:none"></div>
+        </div>
+      </div>
+
+      <!-- 右：柱状图 -->
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="panel-title">高质量论文引用月度变化</div>
+            <div class="panel-sub">按论文发表月份统计（自 2025 年 9 月起）· 香槟金为非「仅引用」板块</div>
+          </div>
+        </div>
+        <div class="bar-chart">
+          <div class="bars" id="bars"></div>
+          <div class="chart-legend" id="barLegend"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 引用次数统计表 -->
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="panel-title">Genie 产品相关论文引用次数统计（谷歌学术）</div>
+          <div class="panel-sub">每月更新一次 · 单位：次</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="cite-table">
+          <colgroup>
+            <col class="w-t"><col>
+            <col style="width:96px"><col style="width:96px"><col style="width:96px">
+            <col style="width:110px">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>类型</th><th>论文标题</th>
+              <th>8.1</th><th>9.1</th><th>10.1</th>
+              <th>最新一期</th>
+            </tr>
+          </thead>
+          <tbody id="citeBody"></tbody>
+        </table>
+      </div>
+      <div class="panel-foot">
+        <span>数据来源：Google Scholar</span>
+        <span class="foot-rule">每月更新 · <b>最新合计</b> 以最近一期为准</span>
+        <span id="citeFootRight">—</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 视图二：高质量引用明细 -->
+  <section class="view" id="view-detail">
+    <div class="hero">
+      <div class="hero-label">GENIE IMPACT · CITATION DETAILS</div>
+      <h1 class="hero-title">高质量<em>引用明细</em></h1>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head" style="flex-direction:column;align-items:stretch;gap:14px">
+        <div>
+          <div class="cat-head" style="padding-bottom:0">
+            <span class="cat-title"><em>SECTION</em><span id="catZh">—</span></span>
+            <span class="cat-count" id="catCount">—</span>
+          </div>
+        </div>
+        <div class="seg" id="catSeg" style="flex-wrap:wrap"></div>
+      </div>
+      <div id="detailBody"></div>
+      <div class="panel-foot">
+        <span>论文标题保持原始记录</span>
+        <span class="foot-rule">板块内按<b>发表日期从新到旧</b>排序</span>
+        <span id="detailFootRight">—</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 视图三：后台 -->
+  <section class="view" id="view-admin">
+    <div class="hero">
+      <div class="hero-label">ADMIN CONSOLE</div>
+      <h1 class="hero-title">后台<em>数据管理</em></h1>
+    </div>
+    <div class="panel" id="adminPanel"></div>
+  </section>
+
+</main>
+
+<!-- 固定页脚 -->
+<footer class="foot">
+  <div class="foot-inner">
+    <span class="foot-brand"><span class="foot-dot"></span>智元 Genie 科研合作 · 数据每月更新</span>
+    <a href="#" class="foot-admin" id="adminLink">后台管理</a>
+  </div>
+</footer>
+
+<!-- 密码弹窗 -->
+<div class="modal" id="pwModal">
+  <div class="modal-card modal-narrow">
+    <div class="modal-head">
+      <div class="modal-title">后台访问验证</div>
+      <button class="modal-close" data-close="pwModal">&times;</button>
+    </div>
+    <div class="pw-box">
+      <div style="font-size:11.5px;color:var(--text-3);margin-bottom:16px">请输入管理密码</div>
+      <input type="password" id="pwInput" autocomplete="off" placeholder="••••••">
+      <div class="pw-err" id="pwErr"></div>
+      <button class="btn-primary" id="pwOk" style="margin-top:6px">进入后台</button>
+    </div>
+  </div>
+</div>
+
+<!-- 编辑弹窗 -->
+<div class="modal" id="editModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div class="modal-title" id="editTitle">编辑论文</div>
+      <button class="modal-close" data-close="editModal">&times;</button>
+    </div>
+    <form id="editForm">
+      <div class="form-grid">
+        <div class="fld"><label>论文标题</label><input name="title" required></div>
+        <div class="fld"><label>分类</label>
+          <select name="category" id="editCat"></select>
+        </div>
+        <div class="fld"><label>原始核心应用</label><input name="raw_category"></div>
+        <div class="fld"><label>论文团队</label><input name="team"></div>
+        <div class="fld"><label>日期</label><input name="pub_date" placeholder="2025/3 或 2026/5/9"></div>
+        <div class="fld"><label>发表信息（期刊/会议/链接）</label><input name="venue"></div>
+        <div class="fld full"><label>文章核心研究内容</label><textarea name="summary" rows="4"></textarea></div>
+        <div class="fld full"><label>智元产品内容（智元关联）</label><textarea name="agibot_rel" rows="3"></textarea></div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn-ghost" data-close="editModal">取消</button>
+        <button type="submit" class="btn-primary">保存</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- 悬浮搜索 Agent -->
+<button class="agent-fab" id="agentFab" title="论文解析 Agent">✦</button>
+<div class="agent-panel" id="agentPanel">
+  <div class="agent-head">
+    <span class="agent-dot"></span>
+    <div>
+      <div class="agent-title">论文解析 Agent</div>
+      <div class="agent-sub">粘贴论文链接，自动解析并录入数据库</div>
+    </div>
+  </div>
+  <div class="agent-body" id="agentBody"></div>
+  <div class="agent-input">
+    <input id="agentInput" placeholder="粘贴论文链接，如 https://arxiv.org/abs/2503.06669">
+    <button class="agent-send" id="agentSend">解析</button>
+  </div>
+</div>
+
+<div class="bar-tip" id="barTip"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

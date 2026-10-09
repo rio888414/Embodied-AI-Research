@@ -1,0 +1,13 @@
+# 依赖与构建产物
+node_modules/
+dist/
+build/
+
+# 本地中间产物
+.ref_extract/
+*.log
+
+# 系统文件
+.DS_Store
+Thumbs.db
+desktop.ini
